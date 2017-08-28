@@ -18,9 +18,8 @@ package com.ouyangzn.simplesample.module.lifecycle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.ouyangzn.lib.utils.Toast;
 import com.ouyangzn.simplesample.R;
-import com.ouyangzn.simplesample.base.BaseActivity;
+import com.ouyangzn.simplesample.base.BaseLifecycleActivity;
 
 import butterknife.BindView;
 
@@ -28,7 +27,7 @@ import butterknife.BindView;
  * Created by ouyangzn on 2017/8/28.
  * Descriptions: 定位,获取当前位置,为了降低功耗,需要在onPause的时候暂停定位,onResume才开启定位
  */
-public class TestLifeCycleActivity extends BaseActivity {
+public class TestLifeCycleActivity extends BaseLifecycleActivity {
 
     private LocationManager mLocationManager;
     @BindView(R.id.tv_test_life_cycle_lat) TextView mTvLat;

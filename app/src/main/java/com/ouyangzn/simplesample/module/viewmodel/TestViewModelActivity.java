@@ -27,6 +27,7 @@ import android.util.Log;
 import com.ouyangzn.recyclerview.BaseRecyclerViewAdapter;
 import com.ouyangzn.simplesample.R;
 import com.ouyangzn.simplesample.base.BaseActivity;
+import com.ouyangzn.simplesample.base.BaseLifecycleActivity;
 import com.ouyangzn.simplesample.utils.UiUtils;
 
 import java.util.List;
@@ -37,7 +38,7 @@ import butterknife.BindView;
  * Created by ouyangzn on 2017/8/28.
  * Descriptions:
  */
-public class TestViewModelActivity extends BaseActivity implements BaseRecyclerViewAdapter.OnLoadingMoreListener {
+public class TestViewModelActivity extends BaseLifecycleActivity implements BaseRecyclerViewAdapter.OnLoadingMoreListener {
     private static final int LIMIT = 10;
     private static final int PAGE_FIRST = 0;
 

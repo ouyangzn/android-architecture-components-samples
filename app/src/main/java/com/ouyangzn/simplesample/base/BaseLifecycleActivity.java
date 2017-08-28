@@ -15,6 +15,8 @@
 
 package com.ouyangzn.simplesample.base;
 
+import android.arch.lifecycle.LifecycleRegistry;
+import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -27,30 +29,12 @@ import butterknife.Unbinder;
  * Created by ouyangzn on 2017/8/28.
  * Descriptions:
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseLifecycleActivity extends BaseActivity implements LifecycleRegistryOwner {
 
-    protected String TAG = "BaseActivity";
-
-    private Unbinder mBind;
+    protected final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getContentView());
-        setTitle(getClass().getSimpleName());
-        TAG = getClass().getSimpleName();
-        mBind = ButterKnife.bind(this);
-        initData();
-        initView();
-    }
-
-    protected abstract @LayoutRes int getContentView();
-    protected abstract void initData();
-    protected abstract void initView();
-
-    @Override
-    protected void onDestroy() {
-        mBind.unbind();
-        super.onDestroy();
+    public LifecycleRegistry getLifecycle() {
+        return mRegistry;
     }
 }

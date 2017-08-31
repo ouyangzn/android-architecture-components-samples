@@ -21,13 +21,14 @@ import android.util.Log;
 import android.widget.TextView;
 import butterknife.BindView;
 import com.ouyangzn.simplesample.R;
+import com.ouyangzn.simplesample.base.BaseActivity;
 import com.ouyangzn.simplesample.base.BaseLifecycleActivity;
 
 /**
  * Created by ouyangzn on 2017/8/28.
  * Descriptions:
  */
-public class TestLiveDataActivity extends BaseLifecycleActivity implements Observer<TestData> {
+public class TestLiveDataActivity extends BaseActivity implements Observer<TestData> {
 
   @BindView(R.id.tv_test_live_data) TextView mTvData;
   private DataLiveData mDataLiveData;
@@ -38,7 +39,7 @@ public class TestLiveDataActivity extends BaseLifecycleActivity implements Obser
 
   @Override protected void initData() {
     mDataLiveData = new DataLiveData();
-    mDataLiveData.observe(this, this);
+    //mDataLiveData.observe(this, this);
   }
 
   @Override protected void initView() {
@@ -47,10 +48,12 @@ public class TestLiveDataActivity extends BaseLifecycleActivity implements Obser
 
   @Override protected void onResume() {
     super.onResume();
+    mDataLiveData.observeForever(this);
   }
 
   @Override protected void onPause() {
     super.onPause();
+    mDataLiveData.removeObserver(this);
   }
 
   @Override public void onChanged(@Nullable TestData data) {

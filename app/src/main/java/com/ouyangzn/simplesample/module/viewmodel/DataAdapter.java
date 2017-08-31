@@ -18,7 +18,6 @@ package com.ouyangzn.simplesample.module.viewmodel;
 import com.ouyangzn.recyclerview.BaseRecyclerViewAdapter;
 import com.ouyangzn.recyclerview.BaseViewHolder;
 import com.ouyangzn.simplesample.R;
-
 import java.util.List;
 
 /**
@@ -27,13 +26,12 @@ import java.util.List;
  */
 public class DataAdapter extends BaseRecyclerViewAdapter<ItemData> {
 
-    public DataAdapter(List<ItemData> data) {
-        super(R.layout.item_list_main, data);
-    }
+  public DataAdapter(List<ItemData> data) {
+    super(R.layout.item_list_main, data);
+  }
 
-    @Override
-    protected void convert(BaseViewHolder holder, ItemData item) {
-        holder.setText(R.id.tv_title, item.getTitle());
-        holder.setText(R.id.tv_content, item.getContent());
-    }
+  @Override protected void convert(BaseViewHolder holder, ItemData item) {
+    holder.setText(R.id.tv_title, item.getTitle());
+    holder.setText(R.id.tv_content, item.getContent());
+  }
 }

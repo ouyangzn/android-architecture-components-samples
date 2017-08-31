@@ -18,12 +18,8 @@ package com.ouyangzn.simplesample.module.viewmodel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
-
 import com.ouyangzn.lib.utils.ThreadUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,61 +29,57 @@ import java.util.List;
  */
 public class ItemDataListViewModel extends ViewModel {
 
-    private MutableLiveData<List<ItemData>> mData;
+  private MutableLiveData<List<ItemData>> mData;
 
-    public ItemDataListViewModel() {
-        mData = new MutableLiveData<>();
-    }
+  public ItemDataListViewModel() {
+    mData = new MutableLiveData<>();
+  }
 
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-    }
+  @Override protected void onCleared() {
+    super.onCleared();
+  }
 
-    public LiveData<List<ItemData>> getItemLiveData() {
-        if (mData == null) mData = new MutableLiveData<>();
-        return mData;
-    }
+  public LiveData<List<ItemData>> getItemLiveData() {
+    if (mData == null) mData = new MutableLiveData<>();
+    return mData;
+  }
 
-    // LiveData中有数据的情况下,会马上触发onChanged通知
-//    public LiveData<List<ItemData>> getData(final int page, final int limit) {
-//        ThreadUtil.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                if (page != 0) {
-//                    ThreadUtil.sleep(2000);
-//                }
-//                mData.postValue(getTestData(page, limit));
-//            }
-//        });
-//        return mData;
-//    }
+  // LiveData中有数据的情况下,会马上触发onChanged通知
+  //    public LiveData<List<ItemData>> getData(final int page, final int limit) {
+  //        ThreadUtil.execute(new Runnable() {
+  //            @Override
+  //            public void run() {
+  //                if (page != 0) {
+  //                    ThreadUtil.sleep(2000);
+  //                }
+  //                mData.postValue(getTestData(page, limit));
+  //            }
+  //        });
+  //        return mData;
+  //    }
 
-    public void getData(final int page, final int limit) {
-        ThreadUtil.execute(new Runnable() {
-            @Override
-            public void run() {
-                ThreadUtil.sleep(2000);
-                // 如果还有观察此数据的对象则处理
-                if (mData.hasObservers()) {
-                    mData.postValue(getTestData(page, limit));
-                }
-            }
-        });
-    }
-
-    private List<ItemData> getTestData(int page, int limit) {
-        Log.d(this.getClass().getSimpleName(), "-----------create test data------------");
-        List<ItemData> list = new ArrayList<>(limit);
-        ItemData data;
-        for (int i = 0; i < limit; i++) {
-            data = new ItemData();
-            data.setTitle("第" + page + "页的title" + i);
-            data.setContent("第" + page + "页的content" + i);
-            list.add(data);
+  public void getData(final int page, final int limit) {
+    ThreadUtil.execute(new Runnable() {
+      @Override public void run() {
+        ThreadUtil.sleep(2000);
+        // 如果还有观察此数据的对象则处理
+        if (mData.hasObservers()) {
+          mData.postValue(getTestData(page, limit));
         }
-        return list;
+      }
+    });
+  }
+
+  private List<ItemData> getTestData(int page, int limit) {
+    Log.d(this.getClass().getSimpleName(), "-----------create test data------------");
+    List<ItemData> list = new ArrayList<>(limit);
+    ItemData data;
+    for (int i = 0; i < limit; i++) {
+      data = new ItemData();
+      data.setTitle("第" + page + "页的title" + i);
+      data.setContent("第" + page + "页的content" + i);
+      list.add(data);
     }
-
-
+    return list;
+  }
 }

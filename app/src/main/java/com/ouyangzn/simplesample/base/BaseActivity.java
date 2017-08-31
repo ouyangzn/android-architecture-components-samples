@@ -19,7 +19,6 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -29,28 +28,28 @@ import butterknife.Unbinder;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-    protected String TAG = "BaseActivity";
+  protected String TAG = "BaseActivity";
 
-    private Unbinder mBind;
+  private Unbinder mBind;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getContentView());
-        setTitle(getClass().getSimpleName());
-        TAG = getClass().getSimpleName();
-        mBind = ButterKnife.bind(this);
-        initData();
-        initView();
-    }
+  @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(getContentView());
+    setTitle(getClass().getSimpleName());
+    TAG = getClass().getSimpleName();
+    mBind = ButterKnife.bind(this);
+    initData();
+    initView();
+  }
 
-    protected abstract @LayoutRes int getContentView();
-    protected abstract void initData();
-    protected abstract void initView();
+  protected abstract @LayoutRes int getContentView();
 
-    @Override
-    protected void onDestroy() {
-        mBind.unbind();
-        super.onDestroy();
-    }
+  protected abstract void initData();
+
+  protected abstract void initView();
+
+  @Override protected void onDestroy() {
+    mBind.unbind();
+    super.onDestroy();
+  }
 }

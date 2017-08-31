@@ -16,7 +16,6 @@
 package com.ouyangzn.simplesample.utils;
 
 import android.content.Intent;
-
 import com.ouyangzn.simplesample.base.BaseActivity;
 import com.ouyangzn.simplesample.module.lifecycle.TestLifeCycleActivity;
 import com.ouyangzn.simplesample.module.livedata.TestLiveDataActivity;
@@ -28,15 +27,15 @@ import com.ouyangzn.simplesample.module.viewmodel.TestViewModelActivity;
  */
 public class Actions {
 
-    public static void goTestLifeCycle(BaseActivity activity) {
-        activity.startActivity(new Intent(activity, TestLifeCycleActivity.class));
-    }
+  public static void goTestLifeCycle(BaseActivity activity) {
+    activity.startActivity(new Intent(activity, TestLifeCycleActivity.class));
+  }
 
-    public static void goTestLiveData(BaseActivity activity) {
-        activity.startActivity(new Intent(activity, TestLiveDataActivity.class));
-    }
+  public static void goTestLiveData(BaseActivity activity) {
+    activity.startActivity(new Intent(activity, TestLiveDataActivity.class));
+  }
 
-    public static void goTestViewModel(BaseActivity activity) {
-        activity.startActivity(new Intent(activity, TestViewModelActivity.class));
-    }
+  public static void goTestViewModel(BaseActivity activity) {
+    activity.startActivity(new Intent(activity, TestViewModelActivity.class));
+  }
 }

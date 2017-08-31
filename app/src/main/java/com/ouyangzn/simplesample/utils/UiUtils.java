@@ -19,7 +19,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.ouyangzn.recyclerview.BaseRecyclerViewAdapter;
 import com.ouyangzn.simplesample.R;
 
@@ -29,28 +28,28 @@ import com.ouyangzn.simplesample.R;
  */
 public class UiUtils {
 
-    public static void stopRefresh(SwipeRefreshLayout refreshLayout) {
-        if (refreshLayout != null) {
-            refreshLayout.setRefreshing(false);
-        }
+  public static void stopRefresh(SwipeRefreshLayout refreshLayout) {
+    if (refreshLayout != null) {
+      refreshLayout.setRefreshing(false);
     }
+  }
 
-    /**
-     * 给RecyclerView设置加载更多和加载更多失败时的属性
-     *
-     * @param mAdapter BaseRecyclerViewAdapter
-     * @param recyclerView RecyclerView
-     */
-    public static void setRecyclerViewLoadMore(final BaseRecyclerViewAdapter mAdapter,
-                                               RecyclerView recyclerView) {
-        LayoutInflater inflater = LayoutInflater.from(recyclerView.getContext());
-        mAdapter.setLoadMoreView(inflater.inflate(R.layout.item_load_more, recyclerView, false));
-        View loadMoreFail = inflater.inflate(R.layout.item_load_more_failure, recyclerView, false);
-        loadMoreFail.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                mAdapter.reloadMore();
-            }
-        });
-        mAdapter.setLoadMoreFailureView(loadMoreFail);
-    }
+  /**
+   * 给RecyclerView设置加载更多和加载更多失败时的属性
+   *
+   * @param mAdapter BaseRecyclerViewAdapter
+   * @param recyclerView RecyclerView
+   */
+  public static void setRecyclerViewLoadMore(final BaseRecyclerViewAdapter mAdapter,
+      RecyclerView recyclerView) {
+    LayoutInflater inflater = LayoutInflater.from(recyclerView.getContext());
+    mAdapter.setLoadMoreView(inflater.inflate(R.layout.item_load_more, recyclerView, false));
+    View loadMoreFail = inflater.inflate(R.layout.item_load_more_failure, recyclerView, false);
+    loadMoreFail.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        mAdapter.reloadMore();
+      }
+    });
+    mAdapter.setLoadMoreFailureView(loadMoreFail);
+  }
 }

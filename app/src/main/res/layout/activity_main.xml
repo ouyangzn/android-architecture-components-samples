@@ -20,30 +20,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ouyangzn.simplesample.MainActivity">
+    tools:context="com.ouyangzn.simplesample.MainActivity"
+    >
 
-    <Button
-        android:id="@+id/btn_test_life_cycle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试LifeCycle"
-        android:textAllCaps="false"
-        />
+  <Button
+      android:id="@+id/btn_test_life_cycle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="测试LifeCycle"
+      android:textAllCaps="false"
+      />
 
-    <Button
-        android:id="@+id/btn_test_live_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试LiveData"
-        android:textAllCaps="false"
-        />
+  <Button
+      android:id="@+id/btn_test_live_data"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="测试LiveData"
+      android:textAllCaps="false"
+      />
 
-    <Button
-        android:id="@+id/btn_test_view_model"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试ViewModel"
-        android:textAllCaps="false"
-        />
+  <Button
+      android:id="@+id/btn_test_view_model"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="测试ViewModel"
+      android:textAllCaps="false"
+      />
 
 </LinearLayout>

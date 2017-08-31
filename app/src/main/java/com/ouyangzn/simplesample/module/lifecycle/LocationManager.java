@@ -20,7 +20,6 @@ import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.OnLifecycleEvent;
 import android.os.Handler;
 import android.util.Log;
-
 import java.util.Random;
 
 /**
@@ -29,39 +28,35 @@ import java.util.Random;
  */
 public class LocationManager implements LifecycleObserver {
 
-    private static final String TAG = "LocationManager";
+  private static final String TAG = "LocationManager";
 
-    private Handler mHandler;
-    private OnLocationChangedListener mListener;
-    private Runnable mLocationRunnable;
+  private Handler mHandler;
+  private OnLocationChangedListener mListener;
+  private Runnable mLocationRunnable;
 
-    public LocationManager(OnLocationChangedListener listener) {
-        mListener = listener;
-        mHandler = new Handler();
-        mLocationRunnable = new Runnable() {
-            @Override
-            public void run() {
-                Random random = new Random();
-                mListener.onLocationChanged(new Location(random.nextDouble(), random.nextDouble()));
-                mHandler.postDelayed(this, 2000);
-            }
-        };
-    }
+  public LocationManager(OnLocationChangedListener listener) {
+    mListener = listener;
+    mHandler = new Handler();
+    mLocationRunnable = new Runnable() {
+      @Override public void run() {
+        Random random = new Random();
+        mListener.onLocationChanged(new Location(random.nextDouble(), random.nextDouble()));
+        mHandler.postDelayed(this, 2000);
+      }
+    };
+  }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    void onStartLocate() {
-        Log.d(TAG, "----------onStartLocate-------------");
-        mHandler.post(mLocationRunnable);
-    }
+  @OnLifecycleEvent(Lifecycle.Event.ON_RESUME) void onStartLocate() {
+    Log.d(TAG, "----------onStartLocate-------------");
+    mHandler.post(mLocationRunnable);
+  }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    void onStopLocate() {
-        Log.d(TAG, "----------onStopLocate-------------");
-        mHandler.removeCallbacks(mLocationRunnable);
-    }
+  @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE) void onStopLocate() {
+    Log.d(TAG, "----------onStopLocate-------------");
+    mHandler.removeCallbacks(mLocationRunnable);
+  }
 
-    public interface OnLocationChangedListener{
-        void onLocationChanged(Location location);
-    }
-
+  public interface OnLocationChangedListener {
+    void onLocationChanged(Location location);
+  }
 }

@@ -17,13 +17,6 @@ package com.ouyangzn.simplesample.base;
 
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
-import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Created by ouyangzn on 2017/8/28.
@@ -31,10 +24,9 @@ import butterknife.Unbinder;
  */
 public abstract class BaseLifecycleActivity extends BaseActivity implements LifecycleRegistryOwner {
 
-    protected final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
+  protected final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
 
-    @Override
-    public LifecycleRegistry getLifecycle() {
-        return mRegistry;
-    }
+  @Override public LifecycleRegistry getLifecycle() {
+    return mRegistry;
+  }
 }

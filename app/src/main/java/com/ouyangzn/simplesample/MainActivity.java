@@ -16,40 +16,35 @@ package com.ouyangzn.simplesample;
 
 import android.support.annotation.LayoutRes;
 import android.view.View;
-
+import butterknife.OnClick;
 import com.ouyangzn.simplesample.base.BaseActivity;
 import com.ouyangzn.simplesample.utils.Actions;
 
-import butterknife.OnClick;
-
 public class MainActivity extends BaseActivity {
 
-    @Override
-    protected @LayoutRes int getContentView() {
-        return R.layout.activity_main;
+  @Override protected @LayoutRes int getContentView() {
+    return R.layout.activity_main;
+  }
+
+  @Override protected void initData() {
+  }
+
+  @Override protected void initView() {
+
+  }
+
+  @OnClick({ R.id.btn_test_live_data, R.id.btn_test_view_model, R.id.btn_test_life_cycle })
+  public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.btn_test_life_cycle:
+        Actions.goTestLifeCycle(this);
+        break;
+      case R.id.btn_test_live_data:
+        Actions.goTestLiveData(this);
+        break;
+      case R.id.btn_test_view_model:
+        Actions.goTestViewModel(this);
+        break;
     }
-
-    @Override
-    protected void initData() {
-    }
-
-    @Override
-    protected void initView() {
-
-    }
-
-    @OnClick({ R.id.btn_test_live_data, R.id.btn_test_view_model, R.id.btn_test_life_cycle }) public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_test_life_cycle:
-                Actions.goTestLifeCycle(this);
-                break;
-            case R.id.btn_test_live_data:
-                Actions.goTestLiveData(this);
-                break;
-            case R.id.btn_test_view_model:
-                Actions.goTestViewModel(this);
-                break;
-        }
-    }
-
+  }
 }

@@ -18,7 +18,6 @@ package com.ouyangzn.simplesample.module.livedata;
 import android.arch.lifecycle.LiveData;
 import android.os.Handler;
 import android.util.Log;
-
 import java.util.Random;
 
 /**
@@ -27,35 +26,31 @@ import java.util.Random;
  */
 public class DataLiveData extends LiveData<TestData> {
 
-    private static final String TAG = "DataLiveData";
+  private static final String TAG = "DataLiveData";
 
-    private Handler mHandler;
-    private Runnable mDataRunnable;
+  private Handler mHandler;
+  private Runnable mDataRunnable;
 
-    public DataLiveData() {
-        mHandler = new Handler();
-        mDataRunnable = new Runnable() {
-            @Override
-            public void run() {
-                Random random = new Random();
-                postValue(new TestData("随机数:" + random.nextInt()));
-                mHandler.postDelayed(this, 2000);
-            }
-        };
-    }
+  public DataLiveData() {
+    mHandler = new Handler();
+    mDataRunnable = new Runnable() {
+      @Override public void run() {
+        Random random = new Random();
+        postValue(new TestData("随机数:" + random.nextInt()));
+        mHandler.postDelayed(this, 2000);
+      }
+    };
+  }
 
-    @Override
-    protected void onActive() {
-        Log.d(TAG, "---------onActive--------");
-        // 有观察者,开启数据操作
-        mHandler.post(mDataRunnable);
-    }
+  @Override protected void onActive() {
+    Log.d(TAG, "---------onActive--------");
+    // 有观察者,开启数据操作
+    mHandler.post(mDataRunnable);
+  }
 
-    @Override
-    protected void onInactive() {
-        Log.d(TAG, "---------onInactive--------");
-        // 没人观察变化时,取消对数据的操作
-        mHandler.removeCallbacks(mDataRunnable);
-    }
-
+  @Override protected void onInactive() {
+    Log.d(TAG, "---------onInactive--------");
+    // 没人观察变化时,取消对数据的操作
+    mHandler.removeCallbacks(mDataRunnable);
+  }
 }

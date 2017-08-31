@@ -21,17 +21,17 @@ package com.ouyangzn.simplesample.module.livedata;
  */
 public class TestData {
 
-    private String content;
+  private String content;
 
-    public TestData(String content) {
-        this.content = content;
-    }
+  public TestData(String content) {
+    this.content = content;
+  }
 
-    public String getContent() {
-        return content;
-    }
+  public String getContent() {
+    return content;
+  }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+  public void setContent(String content) {
+    this.content = content;
+  }
 }

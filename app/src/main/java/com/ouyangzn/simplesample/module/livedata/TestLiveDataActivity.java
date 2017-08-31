@@ -19,11 +19,9 @@ import android.arch.lifecycle.Observer;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.TextView;
-
+import butterknife.BindView;
 import com.ouyangzn.simplesample.R;
 import com.ouyangzn.simplesample.base.BaseLifecycleActivity;
-
-import butterknife.BindView;
 
 /**
  * Created by ouyangzn on 2017/8/28.
@@ -31,38 +29,32 @@ import butterknife.BindView;
  */
 public class TestLiveDataActivity extends BaseLifecycleActivity implements Observer<TestData> {
 
-    @BindView(R.id.tv_test_live_data) TextView mTvData;
-    private DataLiveData mDataLiveData;
+  @BindView(R.id.tv_test_live_data) TextView mTvData;
+  private DataLiveData mDataLiveData;
 
-    @Override
-    protected int getContentView() {
-        return R.layout.activity_test_live_data;
-    }
+  @Override protected int getContentView() {
+    return R.layout.activity_test_live_data;
+  }
 
-    @Override
-    protected void initData() {
-        mDataLiveData = new DataLiveData();
-        mDataLiveData.observe(this, this);
-    }
+  @Override protected void initData() {
+    mDataLiveData = new DataLiveData();
+    mDataLiveData.observe(this, this);
+  }
 
-    @Override
-    protected void initView() {
+  @Override protected void initView() {
 
-    }
+  }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
+  @Override protected void onResume() {
+    super.onResume();
+  }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
+  @Override protected void onPause() {
+    super.onPause();
+  }
 
-    @Override
-    public void onChanged(@Nullable TestData data) {
-        Log.d(TAG, "-----------onChanged---------");
-        mTvData.setText(data != null ? data.getContent() : "无数据");
-    }
+  @Override public void onChanged(@Nullable TestData data) {
+    Log.d(TAG, "-----------onChanged---------");
+    mTvData.setText(data != null ? data.getContent() : "无数据");
+  }
 }

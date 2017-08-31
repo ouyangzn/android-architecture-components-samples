@@ -17,11 +17,9 @@ package com.ouyangzn.simplesample.module.lifecycle;
 
 import android.util.Log;
 import android.widget.TextView;
-
+import butterknife.BindView;
 import com.ouyangzn.simplesample.R;
 import com.ouyangzn.simplesample.base.BaseLifecycleActivity;
-
-import butterknife.BindView;
 
 /**
  * Created by ouyangzn on 2017/8/28.
@@ -29,35 +27,30 @@ import butterknife.BindView;
  */
 public class TestLifeCycleActivity extends BaseLifecycleActivity {
 
-    private LocationManager mLocationManager;
-    @BindView(R.id.tv_test_life_cycle_lat) TextView mTvLat;
-    @BindView(R.id.tv_test_life_cycle_lon) TextView mTvLon;
+  @BindView(R.id.tv_test_life_cycle_lat) TextView mTvLat;
+  @BindView(R.id.tv_test_life_cycle_lon) TextView mTvLon;
+  private LocationManager mLocationManager;
 
-    @Override
-    protected int getContentView() {
-        return R.layout.activity_test_life_cycle;
-    }
+  @Override protected int getContentView() {
+    return R.layout.activity_test_life_cycle;
+  }
 
-    @Override
-    protected void initData() {
-        mLocationManager = new LocationManager(new LocationManager.OnLocationChangedListener() {
-            @Override
-            public void onLocationChanged(final Location location) {
-                Log.d(TAG, "----------onLocationChanged-----------");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mTvLat.setText(String.valueOf(location.getLat()));
-                        mTvLon.setText(String.valueOf(location.getLon()));
-                    }
-                });
-            }
+  @Override protected void initData() {
+    mLocationManager = new LocationManager(new LocationManager.OnLocationChangedListener() {
+      @Override public void onLocationChanged(final Location location) {
+        Log.d(TAG, "----------onLocationChanged-----------");
+        runOnUiThread(new Runnable() {
+          @Override public void run() {
+            mTvLat.setText(String.valueOf(location.getLat()));
+            mTvLon.setText(String.valueOf(location.getLon()));
+          }
         });
-        mRegistry.addObserver(mLocationManager);
-    }
+      }
+    });
+    mRegistry.addObserver(mLocationManager);
+  }
 
-    @Override
-    protected void initView() {
+  @Override protected void initView() {
 
-    }
+  }
 }
